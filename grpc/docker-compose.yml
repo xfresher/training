@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  app:
+    image: ubuntu:latest
+    tty: true
+    restart: always
+    volumes:
+      - .:/var/www/app
+    working_dir: /var/www/app
+
+  python:
+    image: python:3.9
+    tty: true
+    restart: always
+    volumes:
+      - .:/var/www/app
+      - site-packages:/usr/local/lib/python3.9/site-packages
+    working_dir: /var/www/app
+
+  go:
+    image: golang:1.20
+    tty: true
+    restart: always
+    volumes:
+      - .:/var/www/app
+    working_dir: /var/www/app
+
+volumes:
+  site-packages:
